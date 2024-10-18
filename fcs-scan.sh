@@ -145,7 +145,7 @@ execute_fcs_cli() {
     local fcs_image="${FCS_IMAGE}"
     [[ -n "$fcs_image" ]] || die "OUTPUT_FCS_IMAGE is not set. Ensure the FCS CLI container image was pulled successfully."
 
-    useradd -g 999 -u 999 cs
+    useradd -U -u 999 cs
     setfacl -m u:999:rwx "$GITHUB_WORKSPACE" || die "Failed to set permissions for container user."
     cd "$GITHUB_WORKSPACE" || die "Failed to change directory to $GITHUB_WORKSPACE"
 
