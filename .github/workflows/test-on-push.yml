@@ -28,7 +28,7 @@ jobs:
 
       - name: Show scan results
         run: |
-          cat *-scan-results.sarif
+          cat ./scan-results/*-scan-results.sarif
 
       - name: Upload sarif file
         uses: github/codeql-action/upload-sarif@v3
