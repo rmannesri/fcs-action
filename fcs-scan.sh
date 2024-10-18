@@ -150,7 +150,7 @@ execute_fcs_cli() {
     cd "$GITHUB_WORKSPACE" || die "Failed to change directory to $GITHUB_WORKSPACE"
 
     local docker_command
-    docker_command="docker run --rm --platform linux/amd64 -v $(pwd):/workdir --user 999:999 -w /workdir --entrypoint $FCS_CLI_BIN $fcs_image"
+    docker_command="docker run --rm --platform linux/amd64 -v $(pwd):/workdir --privileged --user 999:999 -w /workdir --entrypoint $FCS_CLI_BIN $fcs_image"
 
     log "Executing FCS CLI tool with the following arguments: $args"
     $docker_command iac scan $args
