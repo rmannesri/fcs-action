@@ -145,11 +145,12 @@ execute_fcs_cli() {
     local fcs_image="${FCS_IMAGE}"
     [[ -n "$fcs_image" ]] || die "OUTPUT_FCS_IMAGE is not set. Ensure the FCS CLI container image was pulled successfully."
 
+    useradd -g 999 -u 999 cs
     setfacl -m u:999:rwx "$GITHUB_WORKSPACE" || die "Failed to set permissions for container user."
     cd "$GITHUB_WORKSPACE" || die "Failed to change directory to $GITHUB_WORKSPACE"
 
     local docker_command
-    docker_command="docker run --rm --platform linux/amd64 -v $(pwd):/workdir -w /workdir --entrypoint $FCS_CLI_BIN $fcs_image"
+    docker_command="docker run --rm --platform linux/amd64 -v $(pwd):/workdir --user 999:999 -w /workdir --entrypoint $FCS_CLI_BIN $fcs_image"
 
     log "Executing FCS CLI tool with the following arguments: $args"
     $docker_command iac scan $args
