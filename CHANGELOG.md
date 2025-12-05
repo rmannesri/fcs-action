@@ -1,5 +1,32 @@
 # Changelog
 
+## [2.1.0](https://github.com/crowdstrike/fcs-action/compare/v2.0.3...v2.1.0) (2025-12-03)
+
+
+### Features
+
+* add project_name parameter for IaC scans ([#54](https://github.com/crowdstrike/fcs-action/issues/54)) ([bec18d8](https://github.com/crowdstrike/fcs-action/commit/bec18d8efd67bc5c7d5cbff43b28b1f961e02d61)), closes [#35](https://github.com/crowdstrike/fcs-action/issues/35)
+
+
+### Miscellaneous
+
+* reset tf example file ([36b48a8](https://github.com/crowdstrike/fcs-action/commit/36b48a8696bda63b6eef444b6b10643f0180179b))
+* test file updates ([cc15c0c](https://github.com/crowdstrike/fcs-action/commit/cc15c0cc7556dd64576ce3bbfc70e946b72b835a))
+
+## [2.0.3](https://github.com/crowdstrike/fcs-action/compare/v2.0.2...v2.0.3) (2025-11-20)
+
+
+### Bug Fixes
+
+* enable GitHub severity levels for SARIF files ([#49](https://github.com/crowdstrike/fcs-action/issues/49)) ([a17e7b3](https://github.com/crowdstrike/fcs-action/commit/a17e7b39c96fec3f0892a5141a26fe2e24aeb4ed))
+* handle output path filenames for IaC SARIF conversion and null fields in image scans ([#50](https://github.com/crowdstrike/fcs-action/issues/50)) ([e6b3a9c](https://github.com/crowdstrike/fcs-action/commit/e6b3a9c6b81820163d1566c48b5429b00c35ca69))
+
+
+### Miscellaneous
+
+* release-please manifest files ([f85683c](https://github.com/crowdstrike/fcs-action/commit/f85683cee79a91355bfe96db22fbd36c068c0a3f))
+* update gitignore ([093d734](https://github.com/crowdstrike/fcs-action/commit/093d734ff4b2f97dab6a59b8654448065227ab11))
+
 ## [2.0.2](https://github.com/CrowdStrike/fcs-action/compare/v2.0.1...v2.0.2) (2025-09-12)
 
 

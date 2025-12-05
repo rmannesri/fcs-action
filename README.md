@@ -48,11 +48,12 @@ To use this action in your workflow, add the following step:
 <!-- x-release-please-start-version -->
 ```yaml
 - name: Run FCS IaC Scan
-  uses: crowdstrike/fcs-action@v2.0.2
+  uses: crowdstrike/fcs-action@v2.1.0
   with:
-    falcon_client_id: 'abcdefghijk123456789'
+    falcon_client_id: ${{ vars.FALCON_CLIENT_ID }}
     falcon_region: 'us-1'
     path: './my-iac-directory'
+    project_name: 'my-awesome-project'
   env:
     FALCON_CLIENT_SECRET: ${{ secrets.FALCON_CLIENT_SECRET }}
 ```
@@ -93,9 +94,9 @@ To use this action in your workflow, add the following step:
 | `report_formats` | List of output formats for reports | No | `json` | **Allowed values**:</br>json, csv, junit, sarif |
 | `config` | Path to configuration file | No | - | `./fcs-config.json` |
 | `policy_rule` | IaC scanning policy rule | No | `local` | **Allowed values**:</br>local</br>default-iac-alert-rule |
-| `timeout` | Scan timeout in seconds | No | `500` | `900` |
 | `disable_secrets_scan` | Disable secrets scanning | No | `false` | **Allowed values**:</br>true</br>false |
 | `project_owners` | Project owners to notify (max 5) | No | - | `john@example.com,jane@example.com` |
+| `project_name` | Name of the project for identification in Falcon console | No | - | `my-awesome-project` |
 
 #### Filtering & Categorization
 
@@ -232,7 +233,7 @@ fail_on: 'critical=1,high=1,medium=1,informational=1'
 <!-- x-release-please-start-version -->
 ```yaml
 - name: Run FCS IaC Scan
-  uses: crowdstrike/fcs-action@v2.0.2
+  uses: crowdstrike/fcs-action@v2.1.0
   with:
     falcon_client_id: ${{ vars.FALCON_CLIENT_ID }}
     falcon_region: 'us-1'
@@ -246,7 +247,7 @@ fail_on: 'critical=1,high=1,medium=1,informational=1'
 <!-- x-release-please-start-version -->
 ```yaml
 - name: Run FCS IaC Scan
-  uses: crowdstrike/fcs-action@v2.0.2
+  uses: crowdstrike/fcs-action@v2.1.0
   with:
     falcon_client_id: ${{ vars.FALCON_CLIENT_ID }}
     falcon_region: 'us-2'
@@ -261,7 +262,7 @@ fail_on: 'critical=1,high=1,medium=1,informational=1'
 <!-- x-release-please-start-version -->
 ```yaml
 - name: Run FCS IaC Scan
-  uses: crowdstrike/fcs-action@v2.0.2
+  uses: crowdstrike/fcs-action@v2.1.0
   with:
     falcon_client_id: ${{ vars.FALCON_CLIENT_ID }}
     falcon_region: 'us-2'
@@ -272,12 +273,29 @@ fail_on: 'critical=1,high=1,medium=1,informational=1'
 ```
 <!-- x-release-please-end -->
 
+### IaC scan with project identification
+<!-- x-release-please-start-version -->
+```yaml
+- name: Run FCS IaC Scan with Project Name
+  uses: crowdstrike/fcs-action@v2.1.0
+  with:
+    falcon_client_id: ${{ vars.FALCON_CLIENT_ID }}
+    falcon_region: 'us-1'
+    path: './infrastructure'
+    project_name: 'payment-service-infrastructure'
+    severities: 'critical,high'
+    report_formats: 'sarif'
+    output_path: './security-scan-results/'
+  env:
+    FALCON_CLIENT_SECRET: ${{ secrets.FALCON_CLIENT_SECRET }}
+```
+<!-- x-release-please-end -->
 
 ### Upload SARIF report to GitHub Code scanning on non-zero exit code
 <!-- x-release-please-start-version -->
 ```yaml
 - name: Run FCS IaC Scan
-  uses: crowdstrike/fcs-action@v2.0.2
+  uses: crowdstrike/fcs-action@v2.1.0
   id: fcs
   with:
     falcon_client_id: ${{ vars.FALCON_CLIENT_ID }}
@@ -300,7 +318,7 @@ fail_on: 'critical=1,high=1,medium=1,informational=1'
 <!-- x-release-please-start-version -->
 ```yaml
 - name: Run FCS IaC Scan
-  uses: crowdstrike/fcs-action@v2.0.2
+  uses: crowdstrike/fcs-action@v2.1.0
   with:
     falcon_client_id: ${{ vars.FALCON_CLIENT_ID }}
     falcon_region: 'us-2'
@@ -319,7 +337,7 @@ fail_on: 'critical=1,high=1,medium=1,informational=1'
 <!-- x-release-please-start-version -->
 ```yaml
 - name: Scan Container Image
-  uses: crowdstrike/fcs-action@v2.0.2
+  uses: crowdstrike/fcs-action@v2.1.0
   with:
     falcon_client_id: ${{ vars.FALCON_CLIENT_ID }}
     falcon_region: 'us-1'
@@ -336,7 +354,7 @@ fail_on: 'critical=1,high=1,medium=1,informational=1'
 <!-- x-release-please-start-version -->
 ```yaml
 - name: Scan Container Image
-  uses: crowdstrike/fcs-action@v2.0.2
+  uses: crowdstrike/fcs-action@v2.1.0
   with:
     falcon_client_id: ${{ vars.FALCON_CLIENT_ID }}
     falcon_region: 'us-1'
@@ -357,7 +375,7 @@ fail_on: 'critical=1,high=1,medium=1,informational=1'
 <!-- x-release-please-start-version -->
 ```yaml
 - name: Scan Image for Vulnerabilities Only
-  uses: crowdstrike/fcs-action@v2.0.2
+  uses: crowdstrike/fcs-action@v2.1.0
   with:
     falcon_client_id: ${{ vars.FALCON_CLIENT_ID }}
     falcon_region: 'us-2'
@@ -378,7 +396,7 @@ fail_on: 'critical=1,high=1,medium=1,informational=1'
 <!-- x-release-please-start-version -->
 ```yaml
 - name: Generate SBOM
-  uses: crowdstrike/fcs-action@v2.0.2
+  uses: crowdstrike/fcs-action@v2.1.0
   with:
     falcon_client_id: ${{ vars.FALCON_CLIENT_ID }}
     falcon_region: 'eu-1'
@@ -396,7 +414,7 @@ fail_on: 'critical=1,high=1,medium=1,informational=1'
 <!-- x-release-please-start-version -->
 ```yaml
 - name: Advanced Image Scan
-  uses: crowdstrike/fcs-action@v2.0.2
+  uses: crowdstrike/fcs-action@v2.1.0
   with:
     falcon_client_id: ${{ vars.FALCON_CLIENT_ID }}
     falcon_region: 'us-1'
@@ -421,7 +439,7 @@ fail_on: 'critical=1,high=1,medium=1,informational=1'
 <!-- x-release-please-start-version -->
 ```yaml
 - name: Scan and Upload to Falcon
-  uses: crowdstrike/fcs-action@v2.0.2
+  uses: crowdstrike/fcs-action@v2.1.0
   with:
     falcon_client_id: ${{ vars.FALCON_CLIENT_ID }}
     falcon_region: 'us-1'
@@ -440,7 +458,7 @@ fail_on: 'critical=1,high=1,medium=1,informational=1'
 <!-- x-release-please-start-version -->
 ```yaml
 - name: Scan Multi-Platform Image
-  uses: crowdstrike/fcs-action@v2.0.2
+  uses: crowdstrike/fcs-action@v2.1.0
   with:
     falcon_client_id: ${{ vars.FALCON_CLIENT_ID }}
     falcon_region: 'us-2'
@@ -463,7 +481,7 @@ You can also use configuration files to customize the scan parameters. For more 
 <!-- x-release-please-start-version -->
 ```yaml
 - name: Run FCS IaC Scan
-  uses: crowdstrike/fcs-action@v2.0.2
+  uses: crowdstrike/fcs-action@v2.1.0
   with:
     falcon_client_id: ${{ vars.FALCON_CLIENT_ID }}
     falcon_region: 'us-1'
