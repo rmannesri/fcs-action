@@ -142,10 +142,10 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.12'
+#    - name: Setup Python
+#      uses: actions/setup-python@v4
+#      with:
+#        python-version: '3.12'
 
     - name: Install Python dependencies
       run: pip install -r $GITHUB_ACTION_PATH/requirements.txt
